@@ -54,6 +54,8 @@ main {
     font-size: 1.2rem;
 
     cursor: pointer;
+
+    border: 1px solid black;
 }
 
 #squareContainer .facile {
@@ -71,7 +73,7 @@ main {
     height: calc(1000px / 7);
 }
 
-.squareSelected {
+#squareContainer>.squareSelected {
     border-top: 3px solid rgb(2, 250, 238);
     border-right: 3px solid rgb(179, 24, 182);
     border-bottom: 3px solid rgb(179, 24, 182);
@@ -79,6 +81,16 @@ main {
 
     background-color: #efb1f3;
     background-image: linear-gradient(135deg, #efb1f3 0%, #8ef2fc 100%);
+}
+
+#squareContainer>.squareBomb {
+    background-image: url("https://upload.wikimedia.org/wikipedia/commons/0/00/Bomb_pixel.svg");
+    filter: invert();
+    background-repeat: no-repeat;
+    background-size: 50px;
+    background-position: center;
+    background-color: rgb(0, 224, 254);
+    border: 1px solid white;
 }
 
 footer {

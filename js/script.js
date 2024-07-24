@@ -2,10 +2,10 @@ const playBtn = document.getElementById('gioca');
 
 playBtn.addEventListener('click', function () {
 
-    const container = document.getElementById('squareContainer')
+    const container = document.getElementById('squareContainer');
 
-    const opzioniGioco = document.getElementById('opzioniGioco')
-    console.log(opzioniGioco.value)
+    const opzioniGioco = document.getElementById('opzioniGioco');
+    console.log(opzioniGioco.value);
 
     let squaregrid = 100;
 
@@ -17,17 +17,24 @@ playBtn.addEventListener('click', function () {
     };
 
     // creo le bombe
-    const bomba = []
-    // creo un ciclo per generare le 16 bombe
-    for (let i = 0; i <= 16; i++) {
+    const bomba = [];
+    console.log('bombe', bomba);
 
+    /* 
+    creo un ciclo INDEFINITO per due motivi:
+        1. perché la generazione dei numeri random potrebbe creare doppioni e non li voglio
+        2. perché se crea doppioni devo stare nel ciclo finché non genera tutti numeri unici 
+    */
+
+    while (bomba.length < 16) {
         // richiamo la funzione per generare i numeri, gli passo i parametri
         const randomNumber = getRandomNumber(1, squaregrid);
-        console.log('randomNumber', randomNumber, typeof randomNumber);
 
-        // metto la bomba dentro l'array
-        bomba.push(randomNumber);
-
+        // se l'array NON contiene il randomNumber... 
+        if (bomba.includes(randomNumber) == false) {
+            // ... allora ci pusho la bomba nell'array
+            bomba.push(randomNumber);
+        };
     };
 
     container.innerHTML = ''
@@ -36,6 +43,7 @@ playBtn.addEventListener('click', function () {
 
         const square = document.createElement('div');
         squareContainer.append(square);
+        square.innerHTML = i;
 
         if (squaregrid == 100) {
             square.classList.add('facile');
@@ -49,12 +57,26 @@ playBtn.addEventListener('click', function () {
 
         square.addEventListener('click', function () {
             this.classList.add('squareSelected')
+
+            // aggiungo una variabile per rilevare il click specifico
+            const squareNumber = parseInt(this.innerText)
+            // se l'array, include il numero del quadrato...
+            if (bomba.includes(squareNumber)) {
+                console.log('è una bomba')
+                // ...allora aggiungo la classe bomba
+                this.classList.add('squareBomb')
+            }
+            // altrimenti cliked easy peasy
+            else {
+                console.log('non è una bomba')
+            };
         });
 
     };
 
 });
 
+// funziona per generare un numero random
 function getRandomNumber(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }

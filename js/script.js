@@ -82,7 +82,7 @@ playBtn.addEventListener('click', function () {
                     this.classList.add('squareBomb');
 
                     //aggiungo il messaggio per concludere il gioco
-                    alert('BLOOM! Hai perso, il tuo punteggio è: ' + squareWOBomba.lenght);
+                    alert('BLOOM! Hai perso, il tuo punteggio è: ' + squareWOBomba.length);
                 }
                 // altrimenti cliked easy peasy
                 else {
@@ -92,7 +92,7 @@ playBtn.addEventListener('click', function () {
                     if ((squareWOBomba.length + 1) == squaregrid - numeroBombe) {
 
                         // aggiungo il messaggio per comunicare la vincita
-                        alert('Hai vinto, il tuo punteggio è: ' + (squareWOBomba.lenght + 1));
+                        alert('Hai vinto, il tuo punteggio è: ' + (squareWOBomba.length + 1));
                     }
                 };
             }
